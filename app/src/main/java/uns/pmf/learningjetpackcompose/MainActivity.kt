@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LearningJetpackComposeTheme {
-                Example2()
+                Example1()
             }
         }
     }
@@ -32,18 +32,19 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Example1() {
     val scrollState = rememberScrollState()
-    Column(
+    Row(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(scrollState)
+            .horizontalScroll(scrollState),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         for (i in 0..30) {
             Text(
                 text = "$i",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(4.dp),
-                fontSize = 24.sp,
+                    .padding(horizontal = 8.dp),
+                fontSize = 36.sp,
                 fontWeight = FontWeight.Bold
             )
         }
@@ -52,20 +53,24 @@ fun Example1() {
 
 @Composable
 fun Example2() {
-    Column(
+    Row(
         modifier = Modifier
-            .background(Color.Red)
+            .background(Color.Yellow)
             .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Example 2",
-            modifier = Modifier.background(Color.Yellow)
+            text = "Item 1",
+            modifier = Modifier.background(Color.Red)
         )
         Text(
-            text = "Column Composable",
-            modifier = Modifier.background(Color.Yellow)
+            text = "Item 2",
+            modifier = Modifier.background(Color.Green)
+        )
+        Text(
+            text = "Item 3",
+            modifier = Modifier.background(Color.Blue)
         )
     }
 }
